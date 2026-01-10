@@ -2,6 +2,23 @@
 
 ---
 
+## **Version 1.3.6**
+📅 *Released: January 10, 2026*
+
+### 🔐 Authentication & Security
+* **Firebase App Check:** Implemented App Check using reCAPTCHA v3 to secure backend resources.
+  * Added automatic **Localhost Debugging** support (bypasses reCAPTCHA locally).
+  * Configured to work seamlessly in both dev (using debug token) and production (using reCAPTCHA).
+* **Backend Auth Fix:** Updated `firebase-admin` initialization to support dual-environment credentials.
+
+### 🔌 Extension Integration
+* **Bi-Directional Logout:**
+  * **Website to Extension:** The website now broadcasts the "Logout" signal to **both** the Production and Testing versions of the Chrome Extension simultaneously when you log out.
+  * **Extension to Website:** Added a listener on the `Navbar` to detect logout requests coming *from* the extension, ensuring that logging out via the extension also logs you out of the website.
+* **Console Cleanup:** Removed verbose "Extension not found" logs and other debug messages from Login, Signup, and Navbar components to keep the console clean.
+
+---
+
 ## **Version 1.3.5**
 📅 *Released: January 4, 2026*
 
