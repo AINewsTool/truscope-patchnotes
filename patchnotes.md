@@ -2,6 +2,98 @@
 
 ---
 
+## **Version 2.1.2**
+📅 *Released: August 16, 2026*
+
+🌐 *Website onboarding page deployed: August 19, 2026*
+
+### 👋 New-User Onboarding
+* **Automatic Welcome Guide:** Fresh installations now open the TruScope welcome page in a new tab.
+* **Update-Safe Behavior:** The guide opens only after a first-time installation, so extension updates do not interrupt returning users.
+* **60-Second Setup:** The new website guide explains how to pin TruScope, open a supported news or opinion article, and run a first analysis.
+* **Clear Result Preview:** New users can preview the signal score, exact supporting passages, and article-direction result before getting started.
+
+---
+
+## **Version 2.1.1**
+📅 *Released: August 15, 2026*
+
+### 🧭 Navigation Improvements
+* **Clearer Contact Link:** The extension's Contact navigation item now includes an external-link icon and tooltip so users know it opens the website in a new tab.
+
+---
+
+## **Version 2.1.0**
+📅 *Released: August 14, 2026*
+
+### 🧠 Direction Analysis v3
+* **More Accurate Framing Detection:** Expanded the language and stance patterns used to identify left, right, mixed, or unclear article direction.
+* **Headline, Summary & Body Context:** Direction analysis now considers article summaries alongside headlines and body text.
+* **Better Evidence Weighting:** Model confidence now influences the strength of directional evidence, while nearby sentences can supply context for references such as “this policy.”
+* **Improved Quote Attribution:** Quoted or attributed opinions are separated from the publication's own voice and receive reduced weight.
+* **More Nuanced Results:** Updated thresholds improve mixed-direction detection and reduce unsupported directional labels.
+
+### 📰 Extraction & Packaging Fixes
+* **Cleaner Article Text:** Expanded removal of Mother Jones newsletter and promotional lead-ins from extracted articles.
+* **Manifest Packaging Fix:** Renamed the bundled model-package manifest so Chrome no longer mistakes it for an extension manifest.
+* **Clean Production Builds:** Production builds now remove stale generated files before creating a new package.
+
+---
+
+## **Version 2.0.0**
+📅 *Extension released: August 8, 2026*
+
+🌐 *Website redesign deployed: August 19, 2026*
+
+### 🧠 Private, On-Device Analysis
+* **Local AI Models:** Article analysis now runs entirely on the user's device with bundled, quantized ONNX models; normal analysis no longer sends article text to a TruScope analysis server.
+* **New Bias Signal Score:** Results now report a 0–100 signal for loaded wording and sensational presentation instead of presenting the score as factual accuracy or publisher trust.
+* **Article Direction:** Added left, right, mixed, and unclear direction results based on the framing of the individual article.
+* **Reviewable Evidence:** Biased wording, sensational presentation, and direction results include the exact passages that influenced them.
+* **Independent Publisher Context:** Verified, attributed publisher information is shown separately and never changes the article-level result.
+
+### 📰 Extraction & Page Detection
+* **Stronger Article Extraction:** Added Readability and JSON-LD extraction with safeguards for malformed or oversized page data, better metadata capture, and improved handling of preview-only pages.
+* **News-Page Gate:** TruScope now checks article schema, metadata, URL shape, and body structure before analysis and rejects homepages, search engines, social platforms, and other unsupported pages more reliably.
+* **Analyze Anyway:** Short or uncertain articles can still be analyzed after an explicit confirmation.
+* **Smarter Article Prompts:** Optional on-page prompts identify likely articles, support single-page-app navigation, and can open TruScope directly into analysis.
+* **Improved Highlighting:** Evidence highlighting is more reliable across split page elements and punctuation differences.
+
+### 🗂️ Local History & Research Exports
+* **Recent Activity:** The latest completed analysis is available from the extension home screen.
+* **Local Analysis Archive:** TruScope stores up to 100 complete analysis records on the user's device, including article text, evidence, extraction diagnostics, model versions, thresholds, and methodology.
+* **JSON & CSV Downloads:** The local archive can be exported in validated JSON or spreadsheet-safe CSV formats and cleared at any time.
+
+### 💬 Feedback & Guest Access
+* **Continue as Guest:** Users can analyze articles locally without creating or signing into an account.
+* **Optional Feedback Restored:** Account users and guests can mark a result helpful or unhelpful and add an optional comment.
+* **Explicit Data Disclosure:** TruScope shows exactly what will be uploaded before feedback is submitted; selecting a rating alone sends nothing.
+* **Private Guest Authentication:** A guest receives an anonymous Firebase identity only when submitting feedback.
+* **Safer Submissions:** Feedback now includes strict validation, duplicate protection, retry safety, and per-user and per-network rate limits. Raw IP addresses and account email are not stored with feedback.
+
+### ⚙️ Preferences & Reliability
+* **Synced Preferences:** Signed-in users can sync appearance, highlighting, notifications, one-click detection, and smart-prompt settings while article text and results remain local.
+* **System Theme Support:** Appearance can follow the operating system or be set explicitly to light or dark mode, with migration from the previous dark-mode setting.
+* **Analysis Controls:** Added one-click analysis, cancellation for in-progress analysis, clearer timeouts and errors, and cleanup that prevents signed-out sessions from restoring stale data.
+* **Improved Interfaces:** Redesigned the Home, Results, Settings, Donate, loading, authentication, and guest screens and fixed numerous visual and state-handling issues.
+
+### 🔐 Security & Infrastructure
+* **Hardened Boundaries:** Restricted website-to-extension authentication to trusted TruScope origins, validated synced settings and privileged messages, and escaped page-controlled result content.
+* **Firebase Protection:** Tightened Firestore rules, CORS, API-key restrictions, secret handling, and error responses; enabled deletion protection and point-in-time recovery.
+* **Service Cleanup:** Retired the remote scraper, orchestrator, model-hosting, classifier-uploader, and deployed quota services after analysis moved on-device.
+* **Expanded Test Coverage:** Added automated coverage for extraction, page classification, tokenization, local models, direction analysis, exports, messaging security, feedback, Firestore rules, and full extension smoke flows.
+
+### 🌐 Website Redesign
+* **New Product Experience:** Rebuilt the home page around the 2.0 product with a visual product tour, real extension screenshots, evidence demonstrations, privacy explanation, methodology principles, FAQs, and clearer installation actions.
+* **On-Device Privacy Messaging:** Updated website copy to explain that normal article analysis stays on the device and that account sync is limited to preferences.
+* **Responsive Navigation & Footer:** Added a redesigned desktop/mobile navigation system, signed-in account controls, product links, support links, and direct access to release notes.
+* **Updated Authentication:** Redesigned login, signup, password recovery, reset, and change-password screens with consistent validation, clearer errors, and a shared extension-session handoff.
+* **Contact & Community Support:** Redesigned the contact form and replaced the upgrade-focused page with a community-support page centered on keeping TruScope free and independent.
+* **Rewritten Legal Pages:** Updated the Privacy Policy and Terms of Service for local analysis, guest mode, preference sync, local exports, optional feedback, and current service providers.
+* **Brand & Search Presentation:** Added new light/dark brand assets, updated site metadata and favicon, and introduced a dedicated social-sharing image.
+
+---
+
 ## **Version 1.3.6**
 📅 *Released: January 10, 2026*
 
@@ -16,6 +108,14 @@
   * **Website to Extension:** The website now broadcasts the "Logout" signal to **both** the Production and Testing versions of the Chrome Extension simultaneously when you log out.
   * **Extension to Website:** Added a listener on the `Navbar` to detect logout requests coming *from* the extension, ensuring that logging out via the extension also logs you out of the website.
 * **Console Cleanup:** Removed verbose "Extension not found" logs and other debug messages from Login, Signup, and Navbar components to keep the console clean.
+* **Tighter Extension Access:** Removed the localhost URL from the production extension's externally connectable website list.
+
+### 🌐 Website Updates
+* **Contact Form Delivery:** Added a backend contact-form route using Resend so website messages can be delivered reliably.
+* **Release Messaging:** Updated the website's release popup and footer for version 1.3.6.
+
+### 🧩 Extension Metadata
+* Updated the extension to version 1.3.6 and revised its store description to better explain Trust Scores and bias highlighting.
 
 ---
 
@@ -25,6 +125,7 @@
 ### 🌐 Website Updates
 * Migrated **truscope.app** from a static GitHub Pages site to a **Next.js** app hosted on **Firebase App Hosting**.
 * Refactored authentication for improved security, reliability, and error handling.
+* Added a Firebase Admin custom-token route and improved the login-tab lifecycle used to transfer authenticated website sessions into the extension.
 * Applied global styling updates for a cleaner, more consistent UI.
 
 ### 🆕 Extension Features
@@ -95,5 +196,3 @@
 - Quota check bug.
 - Infinite loading issue.
 - Results screen flicker.
-
-
